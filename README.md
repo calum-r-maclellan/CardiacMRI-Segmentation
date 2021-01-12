@@ -1,5 +1,5 @@
 # CardiacMRI-Segmentation
-PyTorch implementation of both vanilla segmentation networks (UNet and Attention UNet) and a novel multi-task learning (MTL) UNet. The models are trained to segment the right and left ventricles and surrounding myocardium tissue from magnetic resonance images. 
+PyTorch implementation of both vanilla segmentation networks (UNet and Attention UNet) and a novel multi-task learning (MTL) UNet. The models are trained to segment the right and left ventricles and surrounding myocardium tissue from magnetic resonance images (ACDC'17 dataset). 
 
 This work has two key branches:
 - improving the segmentation performance with a multi-task learning U-Net
