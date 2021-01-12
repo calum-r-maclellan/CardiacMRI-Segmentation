@@ -1,0 +1,1410 @@
+Experiment settings:
+	optimiser: adam 
+	lr scheduler: step, gamma=0.1, milestones=[50, 100] 
+	lr: 0.001 
+	batch size: 16 
+	momentum: 0.9 
+
+**** EPOCH 001 ****
+2021-01-08 17:37:33.715648
+epoch 1 | train dice: 0.270745
+epoch 1 | train dice 1: 0.104233
+epoch 1 | train dice 2: 0.270556
+epoch 1 | train dice 3: 0.437445
+epoch 1 | mean train loss: 0.871274
+**** EPOCH 002 ****
+2021-01-08 17:37:47.034192
+epoch 2 | train dice: 0.658013
+epoch 2 | train dice 1: 0.353382
+epoch 2 | train dice 2: 0.738608
+epoch 2 | train dice 3: 0.882049
+epoch 2 | mean train loss: 0.417023
+**** EPOCH 003 ****
+2021-01-08 17:38:00.357892
+epoch 3 | train dice: 0.848495
+epoch 3 | train dice 1: 0.812077
+epoch 3 | train dice 2: 0.812627
+epoch 3 | train dice 3: 0.920781
+epoch 3 | mean train loss: 0.167083
+**** EPOCH 004 ****
+2021-01-08 17:38:13.707383
+epoch 4 | train dice: 0.875043
+epoch 4 | train dice 1: 0.853539
+epoch 4 | train dice 2: 0.837918
+epoch 4 | train dice 3: 0.933672
+epoch 4 | mean train loss: 0.132978
+**** EPOCH 005 ****
+2021-01-08 17:38:27.030537
+epoch 5 | train dice: 0.887343
+epoch 5 | train dice 1: 0.873176
+epoch 5 | train dice 2: 0.849810
+epoch 5 | train dice 3: 0.939043
+epoch 5 | mean train loss: 0.118348
+**** EPOCH 006 ****
+2021-01-08 17:38:40.436100
+epoch 6 | train dice: 0.897993
+epoch 6 | train dice 1: 0.889395
+epoch 6 | train dice 2: 0.862231
+epoch 6 | train dice 3: 0.942354
+epoch 6 | mean train loss: 0.106451
+**** EPOCH 007 ****
+2021-01-08 17:38:53.853797
+epoch 7 | train dice: 0.903215
+epoch 7 | train dice 1: 0.897996
+epoch 7 | train dice 2: 0.867836
+epoch 7 | train dice 3: 0.943813
+epoch 7 | mean train loss: 0.100516
+**** EPOCH 008 ****
+2021-01-08 17:39:07.268635
+epoch 8 | train dice: 0.907193
+epoch 8 | train dice 1: 0.903762
+epoch 8 | train dice 2: 0.871645
+epoch 8 | train dice 3: 0.946172
+epoch 8 | mean train loss: 0.095883
+**** EPOCH 009 ****
+2021-01-08 17:39:20.674291
+epoch 9 | train dice: 0.911717
+epoch 9 | train dice 1: 0.908150
+epoch 9 | train dice 2: 0.877310
+epoch 9 | train dice 3: 0.949691
+epoch 9 | mean train loss: 0.090816
+**** EPOCH 010 ****
+2021-01-08 17:39:34.087316
+epoch 10 | train dice: 0.915936
+epoch 10 | train dice 1: 0.914702
+epoch 10 | train dice 2: 0.881589
+epoch 10 | train dice 3: 0.951517
+epoch 10 | mean train loss: 0.086456
+**** EPOCH 011 ****
+2021-01-08 17:39:47.496077
+epoch 11 | train dice: 0.920916
+epoch 11 | train dice 1: 0.922063
+epoch 11 | train dice 2: 0.886920
+epoch 11 | train dice 3: 0.953766
+epoch 11 | mean train loss: 0.081138
+**** EPOCH 012 ****
+2021-01-08 17:40:00.906802
+epoch 12 | train dice: 0.921853
+epoch 12 | train dice 1: 0.922719
+epoch 12 | train dice 2: 0.886829
+epoch 12 | train dice 3: 0.956012
+epoch 12 | mean train loss: 0.079969
+**** EPOCH 013 ****
+2021-01-08 17:40:14.320846
+epoch 13 | train dice: 0.924875
+epoch 13 | train dice 1: 0.924852
+epoch 13 | train dice 2: 0.892719
+epoch 13 | train dice 3: 0.957055
+epoch 13 | mean train loss: 0.076698
+**** EPOCH 014 ****
+2021-01-08 17:40:27.773936
+epoch 14 | train dice: 0.924331
+epoch 14 | train dice 1: 0.927042
+epoch 14 | train dice 2: 0.890918
+epoch 14 | train dice 3: 0.955034
+epoch 14 | mean train loss: 0.077192
+**** EPOCH 015 ****
+2021-01-08 17:40:41.219879
+epoch 15 | train dice: 0.923100
+epoch 15 | train dice 1: 0.922586
+epoch 15 | train dice 2: 0.890322
+epoch 15 | train dice 3: 0.956391
+epoch 15 | mean train loss: 0.078428
+**** EPOCH 016 ****
+2021-01-08 17:40:54.668150
+epoch 16 | train dice: 0.929650
+epoch 16 | train dice 1: 0.932247
+epoch 16 | train dice 2: 0.897072
+epoch 16 | train dice 3: 0.959631
+epoch 16 | mean train loss: 0.071670
+**** EPOCH 017 ****
+2021-01-08 17:41:08.050828
+epoch 17 | train dice: 0.932969
+epoch 17 | train dice 1: 0.936205
+epoch 17 | train dice 2: 0.901599
+epoch 17 | train dice 3: 0.961103
+epoch 17 | mean train loss: 0.068174
+**** EPOCH 018 ****
+2021-01-08 17:41:21.485904
+epoch 18 | train dice: 0.936549
+epoch 18 | train dice 1: 0.941414
+epoch 18 | train dice 2: 0.905558
+epoch 18 | train dice 3: 0.962676
+epoch 18 | mean train loss: 0.064513
+**** EPOCH 019 ****
+2021-01-08 17:41:34.897577
+epoch 19 | train dice: 0.936141
+epoch 19 | train dice 1: 0.940884
+epoch 19 | train dice 2: 0.905357
+epoch 19 | train dice 3: 0.962182
+epoch 19 | mean train loss: 0.064927
+**** EPOCH 020 ****
+2021-01-08 17:41:48.296547
+epoch 20 | train dice: 0.935895
+epoch 20 | train dice 1: 0.938249
+epoch 20 | train dice 2: 0.906844
+epoch 20 | train dice 3: 0.962591
+epoch 20 | mean train loss: 0.065169
+**** EPOCH 021 ****
+2021-01-08 17:42:01.710122
+epoch 21 | train dice: 0.939948
+epoch 21 | train dice 1: 0.944872
+epoch 21 | train dice 2: 0.910424
+epoch 21 | train dice 3: 0.964548
+epoch 21 | mean train loss: 0.060960
+**** EPOCH 022 ****
+2021-01-08 17:42:15.123888
+epoch 22 | train dice: 0.940202
+epoch 22 | train dice 1: 0.943049
+epoch 22 | train dice 2: 0.912081
+epoch 22 | train dice 3: 0.965476
+epoch 22 | mean train loss: 0.060702
+**** EPOCH 023 ****
+2021-01-08 17:42:28.579632
+epoch 23 | train dice: 0.940416
+epoch 23 | train dice 1: 0.944969
+epoch 23 | train dice 2: 0.911712
+epoch 23 | train dice 3: 0.964565
+epoch 23 | mean train loss: 0.060477
+**** EPOCH 024 ****
+2021-01-08 17:42:42.150698
+epoch 24 | train dice: 0.938956
+epoch 24 | train dice 1: 0.943719
+epoch 24 | train dice 2: 0.909946
+epoch 24 | train dice 3: 0.963202
+epoch 24 | mean train loss: 0.061815
+**** EPOCH 025 ****
+2021-01-08 17:42:55.698963
+epoch 25 | train dice: 0.937557
+epoch 25 | train dice 1: 0.941845
+epoch 25 | train dice 2: 0.907693
+epoch 25 | train dice 3: 0.963133
+epoch 25 | mean train loss: 0.063267
+**** EPOCH 026 ****
+2021-01-08 17:43:09.241267
+epoch 26 | train dice: 0.941397
+epoch 26 | train dice 1: 0.945989
+epoch 26 | train dice 2: 0.913112
+epoch 26 | train dice 3: 0.965089
+epoch 26 | mean train loss: 0.059403
+**** EPOCH 027 ****
+2021-01-08 17:43:22.773996
+epoch 27 | train dice: 0.943311
+epoch 27 | train dice 1: 0.948649
+epoch 27 | train dice 2: 0.915479
+epoch 27 | train dice 3: 0.965806
+epoch 27 | mean train loss: 0.057460
+**** EPOCH 028 ****
+2021-01-08 17:43:36.523275
+epoch 28 | train dice: 0.943506
+epoch 28 | train dice 1: 0.949088
+epoch 28 | train dice 2: 0.915620
+epoch 28 | train dice 3: 0.965810
+epoch 28 | mean train loss: 0.057203
+**** EPOCH 029 ****
+2021-01-08 17:43:50.045342
+epoch 29 | train dice: 0.943368
+epoch 29 | train dice 1: 0.945617
+epoch 29 | train dice 2: 0.917054
+epoch 29 | train dice 3: 0.967434
+epoch 29 | mean train loss: 0.057280
+**** EPOCH 030 ****
+2021-01-08 17:44:03.520282
+epoch 30 | train dice: 0.945905
+epoch 30 | train dice 1: 0.951563
+epoch 30 | train dice 2: 0.918430
+epoch 30 | train dice 3: 0.967722
+epoch 30 | mean train loss: 0.054698
+**** EPOCH 031 ****
+2021-01-08 17:44:17.096389
+epoch 31 | train dice: 0.947752
+epoch 31 | train dice 1: 0.953122
+epoch 31 | train dice 2: 0.921593
+epoch 31 | train dice 3: 0.968543
+epoch 31 | mean train loss: 0.052912
+**** EPOCH 032 ****
+2021-01-08 17:44:30.588615
+epoch 32 | train dice: 0.924732
+epoch 32 | train dice 1: 0.915220
+epoch 32 | train dice 2: 0.899488
+epoch 32 | train dice 3: 0.959488
+epoch 32 | mean train loss: 0.076101
+**** EPOCH 033 ****
+2021-01-08 17:44:44.019106
+epoch 33 | train dice: 0.937614
+epoch 33 | train dice 1: 0.939149
+epoch 33 | train dice 2: 0.910506
+epoch 33 | train dice 3: 0.963188
+epoch 33 | mean train loss: 0.063104
+**** EPOCH 034 ****
+2021-01-08 17:44:57.612340
+epoch 34 | train dice: 0.944545
+epoch 34 | train dice 1: 0.947574
+epoch 34 | train dice 2: 0.918583
+epoch 34 | train dice 3: 0.967477
+epoch 34 | mean train loss: 0.056099
+**** EPOCH 035 ****
+2021-01-08 17:45:11.166472
+epoch 35 | train dice: 0.946512
+epoch 35 | train dice 1: 0.950657
+epoch 35 | train dice 2: 0.920556
+epoch 35 | train dice 3: 0.968325
+epoch 35 | mean train loss: 0.054055
+**** EPOCH 036 ****
+2021-01-08 17:45:24.698898
+epoch 36 | train dice: 0.948272
+epoch 36 | train dice 1: 0.954610
+epoch 36 | train dice 2: 0.921670
+epoch 36 | train dice 3: 0.968535
+epoch 36 | mean train loss: 0.052244
+**** EPOCH 037 ****
+2021-01-08 17:45:39.047220
+epoch 37 | train dice: 0.949659
+epoch 37 | train dice 1: 0.955504
+epoch 37 | train dice 2: 0.924155
+epoch 37 | train dice 3: 0.969319
+epoch 37 | mean train loss: 0.050849
+**** EPOCH 038 ****
+2021-01-08 17:45:52.598388
+epoch 38 | train dice: 0.934392
+epoch 38 | train dice 1: 0.929074
+epoch 38 | train dice 2: 0.909963
+epoch 38 | train dice 3: 0.964139
+epoch 38 | mean train loss: 0.066271
+**** EPOCH 039 ****
+2021-01-08 17:46:06.120556
+epoch 39 | train dice: 0.945132
+epoch 39 | train dice 1: 0.949483
+epoch 39 | train dice 2: 0.917766
+epoch 39 | train dice 3: 0.968148
+epoch 39 | mean train loss: 0.055442
+**** EPOCH 040 ****
+2021-01-08 17:46:19.584242
+epoch 40 | train dice: 0.949238
+epoch 40 | train dice 1: 0.953703
+epoch 40 | train dice 2: 0.924482
+epoch 40 | train dice 3: 0.969529
+epoch 40 | mean train loss: 0.051285
+**** EPOCH 041 ****
+2021-01-08 17:46:32.972095
+epoch 41 | train dice: 0.951177
+epoch 41 | train dice 1: 0.955619
+epoch 41 | train dice 2: 0.926798
+epoch 41 | train dice 3: 0.971113
+epoch 41 | mean train loss: 0.049358
+**** EPOCH 042 ****
+2021-01-08 17:46:46.362626
+epoch 42 | train dice: 0.951901
+epoch 42 | train dice 1: 0.957780
+epoch 42 | train dice 2: 0.927241
+epoch 42 | train dice 3: 0.970683
+epoch 42 | mean train loss: 0.048596
+**** EPOCH 043 ****
+2021-01-08 17:46:59.735070
+epoch 43 | train dice: 0.953667
+epoch 43 | train dice 1: 0.958902
+epoch 43 | train dice 2: 0.930117
+epoch 43 | train dice 3: 0.971983
+epoch 43 | mean train loss: 0.046810
+**** EPOCH 044 ****
+2021-01-08 17:47:13.158523
+epoch 44 | train dice: 0.954470
+epoch 44 | train dice 1: 0.959800
+epoch 44 | train dice 2: 0.931199
+epoch 44 | train dice 3: 0.972409
+epoch 44 | mean train loss: 0.045998
+**** EPOCH 045 ****
+2021-01-08 17:47:26.540396
+epoch 45 | train dice: 0.953769
+epoch 45 | train dice 1: 0.957469
+epoch 45 | train dice 2: 0.931495
+epoch 45 | train dice 3: 0.972343
+epoch 45 | mean train loss: 0.046690
+**** EPOCH 046 ****
+2021-01-08 17:47:39.967608
+epoch 46 | train dice: 0.953488
+epoch 46 | train dice 1: 0.957506
+epoch 46 | train dice 2: 0.930568
+epoch 46 | train dice 3: 0.972389
+epoch 46 | mean train loss: 0.046943
+**** EPOCH 047 ****
+2021-01-08 17:47:53.327420
+epoch 47 | train dice: 0.955012
+epoch 47 | train dice 1: 0.959835
+epoch 47 | train dice 2: 0.932498
+epoch 47 | train dice 3: 0.972702
+epoch 47 | mean train loss: 0.045410
+**** EPOCH 048 ****
+2021-01-08 17:48:06.698593
+epoch 48 | train dice: 0.954970
+epoch 48 | train dice 1: 0.960829
+epoch 48 | train dice 2: 0.932003
+epoch 48 | train dice 3: 0.972079
+epoch 48 | mean train loss: 0.045516
+**** EPOCH 049 ****
+2021-01-08 17:48:20.121783
+epoch 49 | train dice: 0.956364
+epoch 49 | train dice 1: 0.961940
+epoch 49 | train dice 2: 0.934112
+epoch 49 | train dice 3: 0.973040
+epoch 49 | mean train loss: 0.044060
+**** EPOCH 050 ****
+2021-01-08 17:48:33.519188
+epoch 50 | train dice: 0.956141
+epoch 50 | train dice 1: 0.962188
+epoch 50 | train dice 2: 0.933397
+epoch 50 | train dice 3: 0.972837
+epoch 50 | mean train loss: 0.044288
+**** EPOCH 051 ****
+2021-01-08 17:48:46.910712
+epoch 51 | train dice: 0.960773
+epoch 51 | train dice 1: 0.965206
+epoch 51 | train dice 2: 0.941036
+epoch 51 | train dice 3: 0.976076
+epoch 51 | mean train loss: 0.039638
+**** EPOCH 052 ****
+2021-01-08 17:49:00.306147
+epoch 52 | train dice: 0.962743
+epoch 52 | train dice 1: 0.966957
+epoch 52 | train dice 2: 0.944172
+epoch 52 | train dice 3: 0.977101
+epoch 52 | mean train loss: 0.037759
+**** EPOCH 053 ****
+2021-01-08 17:49:13.828083
+epoch 53 | train dice: 0.963526
+epoch 53 | train dice 1: 0.967525
+epoch 53 | train dice 2: 0.945330
+epoch 53 | train dice 3: 0.977724
+epoch 53 | mean train loss: 0.036928
+**** EPOCH 054 ****
+2021-01-08 17:49:27.788877
+epoch 54 | train dice: 0.964200
+epoch 54 | train dice 1: 0.968489
+epoch 54 | train dice 2: 0.945987
+epoch 54 | train dice 3: 0.978123
+epoch 54 | mean train loss: 0.036342
+**** EPOCH 055 ****
+2021-01-08 17:49:41.287003
+epoch 55 | train dice: 0.964502
+epoch 55 | train dice 1: 0.968347
+epoch 55 | train dice 2: 0.946668
+epoch 55 | train dice 3: 0.978493
+epoch 55 | mean train loss: 0.036029
+**** EPOCH 056 ****
+2021-01-08 17:49:54.697339
+epoch 56 | train dice: 0.965137
+epoch 56 | train dice 1: 0.969145
+epoch 56 | train dice 2: 0.947646
+epoch 56 | train dice 3: 0.978621
+epoch 56 | mean train loss: 0.035424
+**** EPOCH 057 ****
+2021-01-08 17:50:08.120112
+epoch 57 | train dice: 0.965247
+epoch 57 | train dice 1: 0.968825
+epoch 57 | train dice 2: 0.948190
+epoch 57 | train dice 3: 0.978728
+epoch 57 | mean train loss: 0.035352
+**** EPOCH 058 ****
+2021-01-08 17:50:21.609735
+epoch 58 | train dice: 0.965782
+epoch 58 | train dice 1: 0.969498
+epoch 58 | train dice 2: 0.948851
+epoch 58 | train dice 3: 0.978997
+epoch 58 | mean train loss: 0.034801
+**** EPOCH 059 ****
+2021-01-08 17:50:35.043260
+epoch 59 | train dice: 0.966111
+epoch 59 | train dice 1: 0.969877
+epoch 59 | train dice 2: 0.949296
+epoch 59 | train dice 3: 0.979159
+epoch 59 | mean train loss: 0.034463
+**** EPOCH 060 ****
+2021-01-08 17:50:48.589469
+epoch 60 | train dice: 0.966606
+epoch 60 | train dice 1: 0.970344
+epoch 60 | train dice 2: 0.949920
+epoch 60 | train dice 3: 0.979554
+epoch 60 | mean train loss: 0.034031
+**** EPOCH 061 ****
+2021-01-08 17:51:02.172219
+epoch 61 | train dice: 0.966838
+epoch 61 | train dice 1: 0.970458
+epoch 61 | train dice 2: 0.950407
+epoch 61 | train dice 3: 0.979649
+epoch 61 | mean train loss: 0.033799
+**** EPOCH 062 ****
+2021-01-08 17:51:15.661872
+epoch 62 | train dice: 0.966800
+epoch 62 | train dice 1: 0.970237
+epoch 62 | train dice 2: 0.950536
+epoch 62 | train dice 3: 0.979628
+epoch 62 | mean train loss: 0.033816
+**** EPOCH 063 ****
+2021-01-08 17:51:29.215045
+epoch 63 | train dice: 0.967316
+epoch 63 | train dice 1: 0.970641
+epoch 63 | train dice 2: 0.951177
+epoch 63 | train dice 3: 0.980130
+epoch 63 | mean train loss: 0.033299
+**** EPOCH 064 ****
+2021-01-08 17:51:42.609439
+epoch 64 | train dice: 0.967512
+epoch 64 | train dice 1: 0.971139
+epoch 64 | train dice 2: 0.951431
+epoch 64 | train dice 3: 0.979966
+epoch 64 | mean train loss: 0.033145
+**** EPOCH 065 ****
+2021-01-08 17:51:55.983008
+epoch 65 | train dice: 0.967805
+epoch 65 | train dice 1: 0.971105
+epoch 65 | train dice 2: 0.951989
+epoch 65 | train dice 3: 0.980320
+epoch 65 | mean train loss: 0.032787
+**** EPOCH 066 ****
+2021-01-08 17:52:09.380284
+epoch 66 | train dice: 0.968095
+epoch 66 | train dice 1: 0.971828
+epoch 66 | train dice 2: 0.952156
+epoch 66 | train dice 3: 0.980301
+epoch 66 | mean train loss: 0.032513
+**** EPOCH 067 ****
+2021-01-08 17:52:22.739845
+epoch 67 | train dice: 0.968400
+epoch 67 | train dice 1: 0.972117
+epoch 67 | train dice 2: 0.952439
+epoch 67 | train dice 3: 0.980645
+epoch 67 | mean train loss: 0.032234
+**** EPOCH 068 ****
+2021-01-08 17:52:36.105008
+epoch 68 | train dice: 0.968768
+epoch 68 | train dice 1: 0.972297
+epoch 68 | train dice 2: 0.953288
+epoch 68 | train dice 3: 0.980719
+epoch 68 | mean train loss: 0.031899
+**** EPOCH 069 ****
+2021-01-08 17:52:49.494934
+epoch 69 | train dice: 0.968806
+epoch 69 | train dice 1: 0.972259
+epoch 69 | train dice 2: 0.953223
+epoch 69 | train dice 3: 0.980937
+epoch 69 | mean train loss: 0.031884
+**** EPOCH 070 ****
+2021-01-08 17:53:02.885306
+epoch 70 | train dice: 0.968892
+epoch 70 | train dice 1: 0.972351
+epoch 70 | train dice 2: 0.953432
+epoch 70 | train dice 3: 0.980893
+epoch 70 | mean train loss: 0.031730
+**** EPOCH 071 ****
+2021-01-08 17:53:16.285898
+epoch 71 | train dice: 0.969351
+epoch 71 | train dice 1: 0.972752
+epoch 71 | train dice 2: 0.954165
+epoch 71 | train dice 3: 0.981135
+epoch 71 | mean train loss: 0.031329
+**** EPOCH 072 ****
+2021-01-08 17:53:29.734660
+epoch 72 | train dice: 0.969696
+epoch 72 | train dice 1: 0.973196
+epoch 72 | train dice 2: 0.954424
+epoch 72 | train dice 3: 0.981467
+epoch 72 | mean train loss: 0.030927
+**** EPOCH 073 ****
+2021-01-08 17:53:43.184447
+epoch 73 | train dice: 0.969581
+epoch 73 | train dice 1: 0.972885
+epoch 73 | train dice 2: 0.954565
+epoch 73 | train dice 3: 0.981294
+epoch 73 | mean train loss: 0.031047
+**** EPOCH 074 ****
+2021-01-08 17:53:56.577053
+epoch 74 | train dice: 0.969621
+epoch 74 | train dice 1: 0.972855
+epoch 74 | train dice 2: 0.954558
+epoch 74 | train dice 3: 0.981449
+epoch 74 | mean train loss: 0.030980
+**** EPOCH 075 ****
+2021-01-08 17:54:09.991795
+epoch 75 | train dice: 0.970282
+epoch 75 | train dice 1: 0.973391
+epoch 75 | train dice 2: 0.955390
+epoch 75 | train dice 3: 0.982063
+epoch 75 | mean train loss: 0.030391
+**** EPOCH 076 ****
+2021-01-08 17:54:23.403379
+epoch 76 | train dice: 0.970573
+epoch 76 | train dice 1: 0.973761
+epoch 76 | train dice 2: 0.955965
+epoch 76 | train dice 3: 0.981995
+epoch 76 | mean train loss: 0.030115
+**** EPOCH 077 ****
+2021-01-08 17:54:36.802158
+epoch 77 | train dice: 0.970140
+epoch 77 | train dice 1: 0.973178
+epoch 77 | train dice 2: 0.955402
+epoch 77 | train dice 3: 0.981840
+epoch 77 | mean train loss: 0.030513
+**** EPOCH 078 ****
+2021-01-08 17:54:50.201180
+epoch 78 | train dice: 0.970596
+epoch 78 | train dice 1: 0.973776
+epoch 78 | train dice 2: 0.955954
+epoch 78 | train dice 3: 0.982057
+epoch 78 | mean train loss: 0.030041
+**** EPOCH 079 ****
+2021-01-08 17:55:03.588122
+epoch 79 | train dice: 0.970781
+epoch 79 | train dice 1: 0.973918
+epoch 79 | train dice 2: 0.956292
+epoch 79 | train dice 3: 0.982132
+epoch 79 | mean train loss: 0.029875
+**** EPOCH 080 ****
+2021-01-08 17:55:17.010748
+epoch 80 | train dice: 0.971182
+epoch 80 | train dice 1: 0.974096
+epoch 80 | train dice 2: 0.957059
+epoch 80 | train dice 3: 0.982392
+epoch 80 | mean train loss: 0.029495
+**** EPOCH 081 ****
+2021-01-08 17:55:30.453543
+epoch 81 | train dice: 0.971220
+epoch 81 | train dice 1: 0.974224
+epoch 81 | train dice 2: 0.957049
+epoch 81 | train dice 3: 0.982387
+epoch 81 | mean train loss: 0.029451
+**** EPOCH 082 ****
+2021-01-08 17:55:43.846923
+epoch 82 | train dice: 0.971503
+epoch 82 | train dice 1: 0.974565
+epoch 82 | train dice 2: 0.957434
+epoch 82 | train dice 3: 0.982511
+epoch 82 | mean train loss: 0.029127
+**** EPOCH 083 ****
+2021-01-08 17:55:57.235302
+epoch 83 | train dice: 0.971697
+epoch 83 | train dice 1: 0.974604
+epoch 83 | train dice 2: 0.957771
+epoch 83 | train dice 3: 0.982716
+epoch 83 | mean train loss: 0.028950
+**** EPOCH 084 ****
+2021-01-08 17:56:10.612738
+epoch 84 | train dice: 0.971847
+epoch 84 | train dice 1: 0.974737
+epoch 84 | train dice 2: 0.958100
+epoch 84 | train dice 3: 0.982703
+epoch 84 | mean train loss: 0.028809
+**** EPOCH 085 ****
+2021-01-08 17:56:24.004281
+epoch 85 | train dice: 0.972086
+epoch 85 | train dice 1: 0.975235
+epoch 85 | train dice 2: 0.958172
+epoch 85 | train dice 3: 0.982850
+epoch 85 | mean train loss: 0.028623
+**** EPOCH 086 ****
+2021-01-08 17:56:37.428437
+epoch 86 | train dice: 0.972193
+epoch 86 | train dice 1: 0.975130
+epoch 86 | train dice 2: 0.958522
+epoch 86 | train dice 3: 0.982926
+epoch 86 | mean train loss: 0.028499
+**** EPOCH 087 ****
+2021-01-08 17:56:50.841704
+epoch 87 | train dice: 0.972602
+epoch 87 | train dice 1: 0.975679
+epoch 87 | train dice 2: 0.959087
+epoch 87 | train dice 3: 0.983042
+epoch 87 | mean train loss: 0.028038
+**** EPOCH 088 ****
+2021-01-08 17:57:04.247379
+epoch 88 | train dice: 0.972706
+epoch 88 | train dice 1: 0.975732
+epoch 88 | train dice 2: 0.959005
+epoch 88 | train dice 3: 0.983381
+epoch 88 | mean train loss: 0.027957
+**** EPOCH 089 ****
+2021-01-08 17:57:17.668484
+epoch 89 | train dice: 0.972648
+epoch 89 | train dice 1: 0.975594
+epoch 89 | train dice 2: 0.959178
+epoch 89 | train dice 3: 0.983172
+epoch 89 | mean train loss: 0.027949
+**** EPOCH 090 ****
+2021-01-08 17:57:31.073732
+epoch 90 | train dice: 0.972741
+epoch 90 | train dice 1: 0.975876
+epoch 90 | train dice 2: 0.959055
+epoch 90 | train dice 3: 0.983291
+epoch 90 | mean train loss: 0.027882
+**** EPOCH 091 ****
+2021-01-08 17:57:44.495127
+epoch 91 | train dice: 0.972701
+epoch 91 | train dice 1: 0.975925
+epoch 91 | train dice 2: 0.959070
+epoch 91 | train dice 3: 0.983109
+epoch 91 | mean train loss: 0.027931
+**** EPOCH 092 ****
+2021-01-08 17:57:57.884878
+epoch 92 | train dice: 0.973085
+epoch 92 | train dice 1: 0.976199
+epoch 92 | train dice 2: 0.959543
+epoch 92 | train dice 3: 0.983515
+epoch 92 | mean train loss: 0.027579
+**** EPOCH 093 ****
+2021-01-08 17:58:11.266452
+epoch 93 | train dice: 0.973291
+epoch 93 | train dice 1: 0.976240
+epoch 93 | train dice 2: 0.959978
+epoch 93 | train dice 3: 0.983655
+epoch 93 | mean train loss: 0.027360
+**** EPOCH 094 ****
+2021-01-08 17:58:24.652190
+epoch 94 | train dice: 0.973251
+epoch 94 | train dice 1: 0.975851
+epoch 94 | train dice 2: 0.960087
+epoch 94 | train dice 3: 0.983816
+epoch 94 | mean train loss: 0.027357
+**** EPOCH 095 ****
+2021-01-08 17:58:38.086267
+epoch 95 | train dice: 0.973273
+epoch 95 | train dice 1: 0.975957
+epoch 95 | train dice 2: 0.960217
+epoch 95 | train dice 3: 0.983646
+epoch 95 | mean train loss: 0.027333
+**** EPOCH 096 ****
+2021-01-08 17:58:51.518000
+epoch 96 | train dice: 0.973947
+epoch 96 | train dice 1: 0.976594
+epoch 96 | train dice 2: 0.961197
+epoch 96 | train dice 3: 0.984049
+epoch 96 | mean train loss: 0.026651
+**** EPOCH 097 ****
+2021-01-08 17:59:04.938938
+epoch 97 | train dice: 0.973650
+epoch 97 | train dice 1: 0.976212
+epoch 97 | train dice 2: 0.960853
+epoch 97 | train dice 3: 0.983886
+epoch 97 | mean train loss: 0.026984
+**** EPOCH 098 ****
+2021-01-08 17:59:18.327135
+epoch 98 | train dice: 0.973913
+epoch 98 | train dice 1: 0.976835
+epoch 98 | train dice 2: 0.960892
+epoch 98 | train dice 3: 0.984011
+epoch 98 | mean train loss: 0.026690
+**** EPOCH 099 ****
+2021-01-08 17:59:31.703445
+epoch 99 | train dice: 0.974143
+epoch 99 | train dice 1: 0.976898
+epoch 99 | train dice 2: 0.961438
+epoch 99 | train dice 3: 0.984093
+epoch 99 | mean train loss: 0.026482
+**** EPOCH 100 ****
+2021-01-08 17:59:45.125303
+epoch 100 | train dice: 0.974543
+epoch 100 | train dice 1: 0.977182
+epoch 100 | train dice 2: 0.962008
+epoch 100 | train dice 3: 0.984438
+epoch 100 | mean train loss: 0.026112
+**** EPOCH 101 ****
+2021-01-08 17:59:58.502079
+epoch 101 | train dice: 0.974967
+epoch 101 | train dice 1: 0.977778
+epoch 101 | train dice 2: 0.962579
+epoch 101 | train dice 3: 0.984545
+epoch 101 | mean train loss: 0.025633
+**** EPOCH 102 ****
+2021-01-08 18:00:11.864049
+epoch 102 | train dice: 0.975409
+epoch 102 | train dice 1: 0.978102
+epoch 102 | train dice 2: 0.963336
+epoch 102 | train dice 3: 0.984789
+epoch 102 | mean train loss: 0.025241
+**** EPOCH 103 ****
+2021-01-08 18:00:25.244981
+epoch 103 | train dice: 0.975528
+epoch 103 | train dice 1: 0.977795
+epoch 103 | train dice 2: 0.963798
+epoch 103 | train dice 3: 0.984992
+epoch 103 | mean train loss: 0.025113
+**** EPOCH 104 ****
+2021-01-08 18:00:38.610012
+epoch 104 | train dice: 0.975580
+epoch 104 | train dice 1: 0.978065
+epoch 104 | train dice 2: 0.963703
+epoch 104 | train dice 3: 0.984974
+epoch 104 | mean train loss: 0.025070
+**** EPOCH 105 ****
+2021-01-08 18:00:51.994240
+epoch 105 | train dice: 0.975601
+epoch 105 | train dice 1: 0.978196
+epoch 105 | train dice 2: 0.963650
+epoch 105 | train dice 3: 0.984958
+epoch 105 | mean train loss: 0.025051
+**** EPOCH 106 ****
+2021-01-08 18:01:05.439076
+epoch 106 | train dice: 0.975606
+epoch 106 | train dice 1: 0.978173
+epoch 106 | train dice 2: 0.963713
+epoch 106 | train dice 3: 0.984932
+epoch 106 | mean train loss: 0.025054
+**** EPOCH 107 ****
+2021-01-08 18:01:18.876235
+epoch 107 | train dice: 0.975612
+epoch 107 | train dice 1: 0.978145
+epoch 107 | train dice 2: 0.963740
+epoch 107 | train dice 3: 0.984952
+epoch 107 | mean train loss: 0.025048
+**** EPOCH 108 ****
+2021-01-08 18:01:32.343999
+epoch 108 | train dice: 0.975544
+epoch 108 | train dice 1: 0.977858
+epoch 108 | train dice 2: 0.963721
+epoch 108 | train dice 3: 0.985053
+epoch 108 | mean train loss: 0.025076
+**** EPOCH 109 ****
+2021-01-08 18:01:45.778827
+epoch 109 | train dice: 0.975549
+epoch 109 | train dice 1: 0.978190
+epoch 109 | train dice 2: 0.963614
+epoch 109 | train dice 3: 0.984841
+epoch 109 | mean train loss: 0.025102
+**** EPOCH 110 ****
+2021-01-08 18:01:59.232876
+epoch 110 | train dice: 0.975662
+epoch 110 | train dice 1: 0.978235
+epoch 110 | train dice 2: 0.963767
+epoch 110 | train dice 3: 0.984985
+epoch 110 | mean train loss: 0.024998
+**** EPOCH 111 ****
+2021-01-08 18:02:12.675759
+epoch 111 | train dice: 0.975757
+epoch 111 | train dice 1: 0.978422
+epoch 111 | train dice 2: 0.963689
+epoch 111 | train dice 3: 0.985159
+epoch 111 | mean train loss: 0.024916
+**** EPOCH 112 ****
+2021-01-08 18:02:26.114873
+epoch 112 | train dice: 0.975725
+epoch 112 | train dice 1: 0.978308
+epoch 112 | train dice 2: 0.963830
+epoch 112 | train dice 3: 0.985038
+epoch 112 | mean train loss: 0.024922
+**** EPOCH 113 ****
+2021-01-08 18:02:39.588451
+epoch 113 | train dice: 0.975702
+epoch 113 | train dice 1: 0.978231
+epoch 113 | train dice 2: 0.963858
+epoch 113 | train dice 3: 0.985017
+epoch 113 | mean train loss: 0.024934
+**** EPOCH 114 ****
+2021-01-08 18:02:53.044130
+epoch 114 | train dice: 0.975807
+epoch 114 | train dice 1: 0.978325
+epoch 114 | train dice 2: 0.963979
+epoch 114 | train dice 3: 0.985117
+epoch 114 | mean train loss: 0.024900
+**** EPOCH 115 ****
+2021-01-08 18:03:06.494175
+epoch 115 | train dice: 0.975936
+epoch 115 | train dice 1: 0.978555
+epoch 115 | train dice 2: 0.964108
+epoch 115 | train dice 3: 0.985144
+epoch 115 | mean train loss: 0.024720
+**** EPOCH 116 ****
+2021-01-08 18:03:19.943626
+epoch 116 | train dice: 0.975849
+epoch 116 | train dice 1: 0.978507
+epoch 116 | train dice 2: 0.963997
+epoch 116 | train dice 3: 0.985043
+epoch 116 | mean train loss: 0.024799
+**** EPOCH 117 ****
+2021-01-08 18:03:33.383308
+epoch 117 | train dice: 0.976035
+epoch 117 | train dice 1: 0.978625
+epoch 117 | train dice 2: 0.964288
+epoch 117 | train dice 3: 0.985191
+epoch 117 | mean train loss: 0.024665
+**** EPOCH 118 ****
+2021-01-08 18:03:46.822611
+epoch 118 | train dice: 0.975883
+epoch 118 | train dice 1: 0.978389
+epoch 118 | train dice 2: 0.964137
+epoch 118 | train dice 3: 0.985124
+epoch 118 | mean train loss: 0.024769
+**** EPOCH 119 ****
+2021-01-08 18:04:00.283111
+epoch 119 | train dice: 0.976031
+epoch 119 | train dice 1: 0.978564
+epoch 119 | train dice 2: 0.964370
+epoch 119 | train dice 3: 0.985160
+epoch 119 | mean train loss: 0.024659
+**** EPOCH 120 ****
+2021-01-08 18:04:13.750785
+epoch 120 | train dice: 0.975888
+epoch 120 | train dice 1: 0.978415
+epoch 120 | train dice 2: 0.964031
+epoch 120 | train dice 3: 0.985218
+epoch 120 | mean train loss: 0.024798
+**** EPOCH 121 ****
+2021-01-08 18:04:27.212495
+epoch 121 | train dice: 0.975993
+epoch 121 | train dice 1: 0.978486
+epoch 121 | train dice 2: 0.964348
+epoch 121 | train dice 3: 0.985146
+epoch 121 | mean train loss: 0.024711
+**** EPOCH 122 ****
+2021-01-08 18:04:40.633048
+epoch 122 | train dice: 0.975935
+epoch 122 | train dice 1: 0.978536
+epoch 122 | train dice 2: 0.964126
+epoch 122 | train dice 3: 0.985142
+epoch 122 | mean train loss: 0.024740
+**** EPOCH 123 ****
+2021-01-08 18:04:54.084277
+epoch 123 | train dice: 0.976049
+epoch 123 | train dice 1: 0.978572
+epoch 123 | train dice 2: 0.964333
+epoch 123 | train dice 3: 0.985243
+epoch 123 | mean train loss: 0.024650
+**** EPOCH 124 ****
+2021-01-08 18:05:07.548476
+epoch 124 | train dice: 0.976097
+epoch 124 | train dice 1: 0.978555
+epoch 124 | train dice 2: 0.964350
+epoch 124 | train dice 3: 0.985387
+epoch 124 | mean train loss: 0.024571
+**** EPOCH 125 ****
+2021-01-08 18:05:20.988019
+epoch 125 | train dice: 0.976043
+epoch 125 | train dice 1: 0.978636
+epoch 125 | train dice 2: 0.964372
+epoch 125 | train dice 3: 0.985122
+epoch 125 | mean train loss: 0.024626
+**** EPOCH 126 ****
+2021-01-08 18:05:34.437391
+epoch 126 | train dice: 0.976128
+epoch 126 | train dice 1: 0.978576
+epoch 126 | train dice 2: 0.964610
+epoch 126 | train dice 3: 0.985197
+epoch 126 | mean train loss: 0.024568
+**** EPOCH 127 ****
+2021-01-08 18:05:47.880968
+epoch 127 | train dice: 0.976314
+epoch 127 | train dice 1: 0.978654
+epoch 127 | train dice 2: 0.964815
+epoch 127 | train dice 3: 0.985473
+epoch 127 | mean train loss: 0.024385
+**** EPOCH 128 ****
+2021-01-08 18:06:01.308122
+epoch 128 | train dice: 0.976101
+epoch 128 | train dice 1: 0.978672
+epoch 128 | train dice 2: 0.964444
+epoch 128 | train dice 3: 0.985187
+epoch 128 | mean train loss: 0.024586
+**** EPOCH 129 ****
+2021-01-08 18:06:14.716270
+epoch 129 | train dice: 0.976023
+epoch 129 | train dice 1: 0.978197
+epoch 129 | train dice 2: 0.964440
+epoch 129 | train dice 3: 0.985432
+epoch 129 | mean train loss: 0.024632
+**** EPOCH 130 ****
+2021-01-08 18:06:28.115847
+epoch 130 | train dice: 0.976312
+epoch 130 | train dice 1: 0.978682
+epoch 130 | train dice 2: 0.964853
+epoch 130 | train dice 3: 0.985400
+epoch 130 | mean train loss: 0.024366
+**** EPOCH 131 ****
+2021-01-08 18:06:41.529351
+epoch 131 | train dice: 0.976344
+epoch 131 | train dice 1: 0.978656
+epoch 131 | train dice 2: 0.964907
+epoch 131 | train dice 3: 0.985470
+epoch 131 | mean train loss: 0.024319
+**** EPOCH 132 ****
+2021-01-08 18:06:54.947854
+epoch 132 | train dice: 0.976281
+epoch 132 | train dice 1: 0.978772
+epoch 132 | train dice 2: 0.964667
+epoch 132 | train dice 3: 0.985405
+epoch 132 | mean train loss: 0.024426
+**** EPOCH 133 ****
+2021-01-08 18:07:08.439672
+epoch 133 | train dice: 0.976348
+epoch 133 | train dice 1: 0.978907
+epoch 133 | train dice 2: 0.964787
+epoch 133 | train dice 3: 0.985351
+epoch 133 | mean train loss: 0.024347
+**** EPOCH 134 ****
+2021-01-08 18:07:21.904287
+epoch 134 | train dice: 0.976382
+epoch 134 | train dice 1: 0.978685
+epoch 134 | train dice 2: 0.965012
+epoch 134 | train dice 3: 0.985450
+epoch 134 | mean train loss: 0.024308
+**** EPOCH 135 ****
+2021-01-08 18:07:35.319868
+epoch 135 | train dice: 0.976367
+epoch 135 | train dice 1: 0.978932
+epoch 135 | train dice 2: 0.964835
+epoch 135 | train dice 3: 0.985333
+epoch 135 | mean train loss: 0.024309
+**** EPOCH 136 ****
+2021-01-08 18:07:48.740533
+epoch 136 | train dice: 0.976417
+epoch 136 | train dice 1: 0.978832
+epoch 136 | train dice 2: 0.964872
+epoch 136 | train dice 3: 0.985548
+epoch 136 | mean train loss: 0.024285
+**** EPOCH 137 ****
+2021-01-08 18:08:02.187813
+epoch 137 | train dice: 0.976432
+epoch 137 | train dice 1: 0.978921
+epoch 137 | train dice 2: 0.964867
+epoch 137 | train dice 3: 0.985508
+epoch 137 | mean train loss: 0.024265
+**** EPOCH 138 ****
+2021-01-08 18:08:15.622925
+epoch 138 | train dice: 0.976421
+epoch 138 | train dice 1: 0.978885
+epoch 138 | train dice 2: 0.964964
+epoch 138 | train dice 3: 0.985414
+epoch 138 | mean train loss: 0.024266
+**** EPOCH 139 ****
+2021-01-08 18:08:29.070378
+epoch 139 | train dice: 0.976421
+epoch 139 | train dice 1: 0.978808
+epoch 139 | train dice 2: 0.964981
+epoch 139 | train dice 3: 0.985475
+epoch 139 | mean train loss: 0.024298
+**** EPOCH 140 ****
+2021-01-08 18:08:42.498837
+epoch 140 | train dice: 0.976377
+epoch 140 | train dice 1: 0.978851
+epoch 140 | train dice 2: 0.964865
+epoch 140 | train dice 3: 0.985414
+epoch 140 | mean train loss: 0.024302
+**** EPOCH 141 ****
+2021-01-08 18:08:55.955252
+epoch 141 | train dice: 0.976504
+epoch 141 | train dice 1: 0.978898
+epoch 141 | train dice 2: 0.965062
+epoch 141 | train dice 3: 0.985552
+epoch 141 | mean train loss: 0.024170
+**** EPOCH 142 ****
+2021-01-08 18:09:09.388491
+epoch 142 | train dice: 0.976592
+epoch 142 | train dice 1: 0.979089
+epoch 142 | train dice 2: 0.965025
+epoch 142 | train dice 3: 0.985663
+epoch 142 | mean train loss: 0.024116
+**** EPOCH 143 ****
+2021-01-08 18:09:22.839647
+epoch 143 | train dice: 0.976599
+epoch 143 | train dice 1: 0.979024
+epoch 143 | train dice 2: 0.965161
+epoch 143 | train dice 3: 0.985613
+epoch 143 | mean train loss: 0.024077
+**** EPOCH 144 ****
+2021-01-08 18:09:36.300715
+epoch 144 | train dice: 0.976644
+epoch 144 | train dice 1: 0.979270
+epoch 144 | train dice 2: 0.965083
+epoch 144 | train dice 3: 0.985579
+epoch 144 | mean train loss: 0.024003
+**** EPOCH 145 ****
+2021-01-08 18:09:49.750128
+epoch 145 | train dice: 0.976528
+epoch 145 | train dice 1: 0.978849
+epoch 145 | train dice 2: 0.965143
+epoch 145 | train dice 3: 0.985593
+epoch 145 | mean train loss: 0.024171
+**** EPOCH 146 ****
+2021-01-08 18:10:03.180647
+epoch 146 | train dice: 0.976549
+epoch 146 | train dice 1: 0.978996
+epoch 146 | train dice 2: 0.965130
+epoch 146 | train dice 3: 0.985520
+epoch 146 | mean train loss: 0.024134
+**** EPOCH 147 ****
+2021-01-08 18:10:16.614591
+epoch 147 | train dice: 0.976759
+epoch 147 | train dice 1: 0.979173
+epoch 147 | train dice 2: 0.965495
+epoch 147 | train dice 3: 0.985609
+epoch 147 | mean train loss: 0.023919
+**** EPOCH 148 ****
+2021-01-08 18:10:30.074140
+epoch 148 | train dice: 0.976530
+epoch 148 | train dice 1: 0.979179
+epoch 148 | train dice 2: 0.964904
+epoch 148 | train dice 3: 0.985509
+epoch 148 | mean train loss: 0.024163
+**** EPOCH 149 ****
+2021-01-08 18:10:43.573985
+epoch 149 | train dice: 0.976713
+epoch 149 | train dice 1: 0.979158
+epoch 149 | train dice 2: 0.965403
+epoch 149 | train dice 3: 0.985579
+epoch 149 | mean train loss: 0.023961
+**** EPOCH 150 ****
+2021-01-08 18:10:57.037480
+epoch 150 | train dice: 0.976522
+epoch 150 | train dice 1: 0.979001
+epoch 150 | train dice 2: 0.965083
+epoch 150 | train dice 3: 0.985483
+epoch 150 | mean train loss: 0.024150
+**** EPOCH 151 ****
+2021-01-08 18:11:10.476133
+epoch 151 | train dice: 0.976705
+epoch 151 | train dice 1: 0.979175
+epoch 151 | train dice 2: 0.965396
+epoch 151 | train dice 3: 0.985544
+epoch 151 | mean train loss: 0.023957
+**** EPOCH 152 ****
+2021-01-08 18:11:23.929292
+epoch 152 | train dice: 0.976594
+epoch 152 | train dice 1: 0.979113
+epoch 152 | train dice 2: 0.965152
+epoch 152 | train dice 3: 0.985515
+epoch 152 | mean train loss: 0.024079
+**** EPOCH 153 ****
+2021-01-08 18:11:37.390272
+epoch 153 | train dice: 0.976548
+epoch 153 | train dice 1: 0.978806
+epoch 153 | train dice 2: 0.965281
+epoch 153 | train dice 3: 0.985555
+epoch 153 | mean train loss: 0.024117
+**** EPOCH 154 ****
+2021-01-08 18:11:50.827284
+epoch 154 | train dice: 0.976647
+epoch 154 | train dice 1: 0.979122
+epoch 154 | train dice 2: 0.965218
+epoch 154 | train dice 3: 0.985601
+epoch 154 | mean train loss: 0.024020
+**** EPOCH 155 ****
+2021-01-08 18:12:04.262784
+epoch 155 | train dice: 0.976794
+epoch 155 | train dice 1: 0.979136
+epoch 155 | train dice 2: 0.965582
+epoch 155 | train dice 3: 0.985663
+epoch 155 | mean train loss: 0.023907
+**** EPOCH 156 ****
+2021-01-08 18:12:17.693093
+epoch 156 | train dice: 0.976744
+epoch 156 | train dice 1: 0.979160
+epoch 156 | train dice 2: 0.965478
+epoch 156 | train dice 3: 0.985594
+epoch 156 | mean train loss: 0.023918
+**** EPOCH 157 ****
+2021-01-08 18:12:31.148330
+epoch 157 | train dice: 0.976916
+epoch 157 | train dice 1: 0.979321
+epoch 157 | train dice 2: 0.965747
+epoch 157 | train dice 3: 0.985680
+epoch 157 | mean train loss: 0.023792
+**** EPOCH 158 ****
+2021-01-08 18:12:44.604499
+epoch 158 | train dice: 0.976800
+epoch 158 | train dice 1: 0.979341
+epoch 158 | train dice 2: 0.965516
+epoch 158 | train dice 3: 0.985544
+epoch 158 | mean train loss: 0.023897
+**** EPOCH 159 ****
+2021-01-08 18:12:58.007276
+epoch 159 | train dice: 0.976788
+epoch 159 | train dice 1: 0.979188
+epoch 159 | train dice 2: 0.965488
+epoch 159 | train dice 3: 0.985689
+epoch 159 | mean train loss: 0.023878
+**** EPOCH 160 ****
+2021-01-08 18:13:11.459439
+epoch 160 | train dice: 0.976925
+epoch 160 | train dice 1: 0.979503
+epoch 160 | train dice 2: 0.965614
+epoch 160 | train dice 3: 0.985660
+epoch 160 | mean train loss: 0.023785
+**** EPOCH 161 ****
+2021-01-08 18:13:24.893452
+epoch 161 | train dice: 0.976864
+epoch 161 | train dice 1: 0.979414
+epoch 161 | train dice 2: 0.965611
+epoch 161 | train dice 3: 0.985567
+epoch 161 | mean train loss: 0.023827
+**** EPOCH 162 ****
+2021-01-08 18:13:38.318699
+epoch 162 | train dice: 0.976773
+epoch 162 | train dice 1: 0.979300
+epoch 162 | train dice 2: 0.965403
+epoch 162 | train dice 3: 0.985617
+epoch 162 | mean train loss: 0.023891
+**** EPOCH 163 ****
+2021-01-08 18:13:51.744401
+epoch 163 | train dice: 0.976957
+epoch 163 | train dice 1: 0.979310
+epoch 163 | train dice 2: 0.965742
+epoch 163 | train dice 3: 0.985820
+epoch 163 | mean train loss: 0.023724
+**** EPOCH 164 ****
+2021-01-08 18:14:05.204740
+epoch 164 | train dice: 0.976861
+epoch 164 | train dice 1: 0.979388
+epoch 164 | train dice 2: 0.965511
+epoch 164 | train dice 3: 0.985684
+epoch 164 | mean train loss: 0.023857
+**** EPOCH 165 ****
+2021-01-08 18:14:18.624283
+epoch 165 | train dice: 0.976869
+epoch 165 | train dice 1: 0.979180
+epoch 165 | train dice 2: 0.965625
+epoch 165 | train dice 3: 0.985803
+epoch 165 | mean train loss: 0.023806
+**** EPOCH 166 ****
+2021-01-08 18:14:32.067188
+epoch 166 | train dice: 0.976958
+epoch 166 | train dice 1: 0.979323
+epoch 166 | train dice 2: 0.965784
+epoch 166 | train dice 3: 0.985768
+epoch 166 | mean train loss: 0.023750
+**** EPOCH 167 ****
+2021-01-08 18:14:45.527568
+epoch 167 | train dice: 0.977144
+epoch 167 | train dice 1: 0.979562
+epoch 167 | train dice 2: 0.966005
+epoch 167 | train dice 3: 0.985867
+epoch 167 | mean train loss: 0.023557
+**** EPOCH 168 ****
+2021-01-08 18:14:58.939146
+epoch 168 | train dice: 0.976867
+epoch 168 | train dice 1: 0.979382
+epoch 168 | train dice 2: 0.965569
+epoch 168 | train dice 3: 0.985650
+epoch 168 | mean train loss: 0.023814
+**** EPOCH 169 ****
+2021-01-08 18:15:12.370976
+epoch 169 | train dice: 0.976857
+epoch 169 | train dice 1: 0.979218
+epoch 169 | train dice 2: 0.965609
+epoch 169 | train dice 3: 0.985743
+epoch 169 | mean train loss: 0.023815
+**** EPOCH 170 ****
+2021-01-08 18:15:25.801789
+epoch 170 | train dice: 0.977055
+epoch 170 | train dice 1: 0.979611
+epoch 170 | train dice 2: 0.965725
+epoch 170 | train dice 3: 0.985830
+epoch 170 | mean train loss: 0.023636
+**** EPOCH 171 ****
+2021-01-08 18:15:39.241042
+epoch 171 | train dice: 0.976830
+epoch 171 | train dice 1: 0.979219
+epoch 171 | train dice 2: 0.965640
+epoch 171 | train dice 3: 0.985631
+epoch 171 | mean train loss: 0.023840
+**** EPOCH 172 ****
+2021-01-08 18:15:52.651268
+epoch 172 | train dice: 0.977084
+epoch 172 | train dice 1: 0.979468
+epoch 172 | train dice 2: 0.965994
+epoch 172 | train dice 3: 0.985791
+epoch 172 | mean train loss: 0.023623
+**** EPOCH 173 ****
+2021-01-08 18:16:06.074826
+epoch 173 | train dice: 0.976949
+epoch 173 | train dice 1: 0.979513
+epoch 173 | train dice 2: 0.965714
+epoch 173 | train dice 3: 0.985620
+epoch 173 | mean train loss: 0.023684
+**** EPOCH 174 ****
+2021-01-08 18:16:19.488689
+epoch 174 | train dice: 0.977053
+epoch 174 | train dice 1: 0.979367
+epoch 174 | train dice 2: 0.965937
+epoch 174 | train dice 3: 0.985856
+epoch 174 | mean train loss: 0.023621
+**** EPOCH 175 ****
+2021-01-08 18:16:32.929930
+epoch 175 | train dice: 0.977250
+epoch 175 | train dice 1: 0.979728
+epoch 175 | train dice 2: 0.966130
+epoch 175 | train dice 3: 0.985892
+epoch 175 | mean train loss: 0.023432
+**** EPOCH 176 ****
+2021-01-08 18:16:46.351159
+epoch 176 | train dice: 0.977065
+epoch 176 | train dice 1: 0.979720
+epoch 176 | train dice 2: 0.965690
+epoch 176 | train dice 3: 0.985784
+epoch 176 | mean train loss: 0.023620
+**** EPOCH 177 ****
+2021-01-08 18:16:59.799743
+epoch 177 | train dice: 0.977114
+epoch 177 | train dice 1: 0.979471
+epoch 177 | train dice 2: 0.965904
+epoch 177 | train dice 3: 0.985967
+epoch 177 | mean train loss: 0.023565
+**** EPOCH 178 ****
+2021-01-08 18:17:13.302468
+epoch 178 | train dice: 0.976933
+epoch 178 | train dice 1: 0.979349
+epoch 178 | train dice 2: 0.965715
+epoch 178 | train dice 3: 0.985734
+epoch 178 | mean train loss: 0.023739
+**** EPOCH 179 ****
+2021-01-08 18:17:26.739413
+epoch 179 | train dice: 0.977105
+epoch 179 | train dice 1: 0.979560
+epoch 179 | train dice 2: 0.965976
+epoch 179 | train dice 3: 0.985778
+epoch 179 | mean train loss: 0.023599
+**** EPOCH 180 ****
+2021-01-08 18:17:40.204451
+epoch 180 | train dice: 0.977202
+epoch 180 | train dice 1: 0.979505
+epoch 180 | train dice 2: 0.966210
+epoch 180 | train dice 3: 0.985892
+epoch 180 | mean train loss: 0.023478
+**** EPOCH 181 ****
+2021-01-08 18:17:53.652495
+epoch 181 | train dice: 0.977103
+epoch 181 | train dice 1: 0.979599
+epoch 181 | train dice 2: 0.965898
+epoch 181 | train dice 3: 0.985814
+epoch 181 | mean train loss: 0.023563
+**** EPOCH 182 ****
+2021-01-08 18:18:07.104406
+epoch 182 | train dice: 0.977057
+epoch 182 | train dice 1: 0.979196
+epoch 182 | train dice 2: 0.966001
+epoch 182 | train dice 3: 0.985975
+epoch 182 | mean train loss: 0.023619
+**** EPOCH 183 ****
+2021-01-08 18:18:20.535086
+epoch 183 | train dice: 0.977165
+epoch 183 | train dice 1: 0.979318
+epoch 183 | train dice 2: 0.966299
+epoch 183 | train dice 3: 0.985878
+epoch 183 | mean train loss: 0.023516
+**** EPOCH 184 ****
+2021-01-08 18:18:33.974469
+epoch 184 | train dice: 0.977372
+epoch 184 | train dice 1: 0.979670
+epoch 184 | train dice 2: 0.966463
+epoch 184 | train dice 3: 0.985982
+epoch 184 | mean train loss: 0.023289
+**** EPOCH 185 ****
+2021-01-08 18:18:47.431744
+epoch 185 | train dice: 0.977170
+epoch 185 | train dice 1: 0.979581
+epoch 185 | train dice 2: 0.966048
+epoch 185 | train dice 3: 0.985882
+epoch 185 | mean train loss: 0.023499
+**** EPOCH 186 ****
+2021-01-08 18:19:00.913280
+epoch 186 | train dice: 0.977173
+epoch 186 | train dice 1: 0.979607
+epoch 186 | train dice 2: 0.966051
+epoch 186 | train dice 3: 0.985860
+epoch 186 | mean train loss: 0.023508
+**** EPOCH 187 ****
+2021-01-08 18:19:14.366805
+epoch 187 | train dice: 0.977158
+epoch 187 | train dice 1: 0.979337
+epoch 187 | train dice 2: 0.966268
+epoch 187 | train dice 3: 0.985869
+epoch 187 | mean train loss: 0.023518
+**** EPOCH 188 ****
+2021-01-08 18:19:27.825392
+epoch 188 | train dice: 0.977306
+epoch 188 | train dice 1: 0.979448
+epoch 188 | train dice 2: 0.966417
+epoch 188 | train dice 3: 0.986054
+epoch 188 | mean train loss: 0.023357
+**** EPOCH 189 ****
+2021-01-08 18:19:41.288542
+epoch 189 | train dice: 0.977270
+epoch 189 | train dice 1: 0.979687
+epoch 189 | train dice 2: 0.966186
+epoch 189 | train dice 3: 0.985939
+epoch 189 | mean train loss: 0.023382
+**** EPOCH 190 ****
+2021-01-08 18:19:54.750764
+epoch 190 | train dice: 0.977228
+epoch 190 | train dice 1: 0.979712
+epoch 190 | train dice 2: 0.966114
+epoch 190 | train dice 3: 0.985858
+epoch 190 | mean train loss: 0.023457
+**** EPOCH 191 ****
+2021-01-08 18:20:08.190157
+epoch 191 | train dice: 0.977361
+epoch 191 | train dice 1: 0.979590
+epoch 191 | train dice 2: 0.966482
+epoch 191 | train dice 3: 0.986011
+epoch 191 | mean train loss: 0.023298
+**** EPOCH 192 ****
+2021-01-08 18:20:21.621749
+epoch 192 | train dice: 0.977439
+epoch 192 | train dice 1: 0.979721
+epoch 192 | train dice 2: 0.966477
+epoch 192 | train dice 3: 0.986120
+epoch 192 | mean train loss: 0.023225
+**** EPOCH 193 ****
+2021-01-08 18:20:35.044199
+epoch 193 | train dice: 0.977408
+epoch 193 | train dice 1: 0.979827
+epoch 193 | train dice 2: 0.966359
+epoch 193 | train dice 3: 0.986038
+epoch 193 | mean train loss: 0.023245
+**** EPOCH 194 ****
+2021-01-08 18:20:48.456076
+epoch 194 | train dice: 0.977392
+epoch 194 | train dice 1: 0.979834
+epoch 194 | train dice 2: 0.966334
+epoch 194 | train dice 3: 0.986007
+epoch 194 | mean train loss: 0.023285
+**** EPOCH 195 ****
+2021-01-08 18:21:01.874341
+epoch 195 | train dice: 0.977191
+epoch 195 | train dice 1: 0.979541
+epoch 195 | train dice 2: 0.966167
+epoch 195 | train dice 3: 0.985865
+epoch 195 | mean train loss: 0.023482
+**** EPOCH 196 ****
+2021-01-08 18:21:15.341276
+epoch 196 | train dice: 0.977559
+epoch 196 | train dice 1: 0.979856
+epoch 196 | train dice 2: 0.966670
+epoch 196 | train dice 3: 0.986151
+epoch 196 | mean train loss: 0.023100
+**** EPOCH 197 ****
+2021-01-08 18:21:28.807112
+epoch 197 | train dice: 0.977426
+epoch 197 | train dice 1: 0.979918
+epoch 197 | train dice 2: 0.966366
+epoch 197 | train dice 3: 0.985995
+epoch 197 | mean train loss: 0.023246
+**** EPOCH 198 ****
+2021-01-08 18:21:42.261088
+epoch 198 | train dice: 0.977397
+epoch 198 | train dice 1: 0.979774
+epoch 198 | train dice 2: 0.966354
+epoch 198 | train dice 3: 0.986064
+epoch 198 | mean train loss: 0.023307
+**** EPOCH 199 ****
+2021-01-08 18:21:55.701758
+epoch 199 | train dice: 0.977508
+epoch 199 | train dice 1: 0.979934
+epoch 199 | train dice 2: 0.966574
+epoch 199 | train dice 3: 0.986016
+epoch 199 | mean train loss: 0.023130
+**** EPOCH 200 ****
+2021-01-08 18:22:09.168865
+epoch 200 | train dice: 0.977435
+epoch 200 | train dice 1: 0.979829
+epoch 200 | train dice 2: 0.966519
+epoch 200 | train dice 3: 0.985958
+epoch 200 | mean train loss: 0.023253
+
+Training complete in 44m 49s.
+Time per epoch: 13s.
