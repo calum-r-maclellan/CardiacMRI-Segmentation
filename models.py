@@ -204,6 +204,7 @@ class Att_Unet(nn.Module):
 
         return F.log_softmax(net_out, dim=1)
 
+"""
 ----------------------------------------
 Attention Block:
     Describe
