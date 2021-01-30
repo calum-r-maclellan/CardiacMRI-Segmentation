@@ -3,8 +3,7 @@
 
 “””
 Script containing useful loss functions for training deep segmentation networks. 
-
-edit 
+ 
 @author: calmac
 
 “””

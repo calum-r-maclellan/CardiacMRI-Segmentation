@@ -2,12 +2,19 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Thu 12th November, 2020 
+Created on Thu 12th November 
 
 Script for performing both training and validation steps on the cardiac MRI data.
 
 @author: calmac
 
+latest date: 30.1.21.
+
+Updates: 
+    - 28.1.21: added wee line to compute and print lr/bs ratio. also writes ratio to train.log
+    - 26.1.21: replaced Hes Dice score functions with my own. His gave wrong values, so rewrote it all. 
+              -> no more AverageMeter() crap! (see utils.segmentation_stats)
+    
 """
 # Normal python stuff
 from datetime import datetime
@@ -24,23 +31,23 @@ import torch.nn.functional as F
 # My stuff
 import dataset
 import create_val_dataset
+#import unet_vanilla
 import models
 import loss
 import utils
 from get_learning_algs import get_optim, get_lr_sched
-from plot_learning_curves import plotLearningCurves
+from plotting import plotLearningCurves
 import settings 
 args = settings.parse_arguments()
 
 # Set up folders for storing stuff
 os.system('mkdir {0}'.format(args.weights_path)) # folder for storing model
-log_root = args.log_root                         # folder for storing train/val progress 
-if not os.path.exists(log_root): os.mkdir(log_root)
-trainResultsFile_all = open(os.path.join(log_root, 'train.log'), 'w')
-valResultsFile_all = open(os.path.join(log_root, 'val.log'), 'w')
-trainResultsFile = open(os.path.join(log_root, 'train.txt'), 'w')
-valResultsFile = open(os.path.join(log_root, 'val.txt'), 'w')
-#gradFile = open(os.path.join(log_root, 'grad.txt'), 'w') # for storing gradients computed during train_step().
+os.system('mkdir {0}'.format(args.log_root)) # folder for storing model
+trainResultsFile_all = open(os.path.join(args.log_root, 'train.log'), 'w')
+valResultsFile_all = open(os.path.join(args.log_root, 'val.log'), 'w')
+trainResultsFile = open(os.path.join(args.log_root, 'train.txt'), 'w')
+valResultsFile = open(os.path.join(args.log_root, 'val.txt'), 'w')
+#gradFile = open(os.path.join(log_root, 'grad.txt'), 'w')
 
 def train_log_string(out_str):
   trainResultsFile_all.write(out_str+'\n')
@@ -54,27 +61,24 @@ def val_log_string(out_str):
 def val_txt_string(out_str):
   valResultsFile.write(out_str+'\n')
   valResultsFile.flush()
-#def grad_string(out_str):
-#  gradFile.write(out_str+'\n')
-#  gradFile.flush()  
   
 # Establish available device
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 def main(args):
   
-#  torch.cuda.empty_cache() # uncomment if cuda returns memory error. 
+#  torch.cuda.empty_cache()
   
-  # Set up datasets  
+  # Setup datasets  
   train_val_dict = create_val_dataset.assign_val_data(args)
   train_list = train_val_dict['train']
   val_list = train_val_dict['val']
   
-  # Assign datasets and pytorch loaders
+  # Assign datasets and dataloaders
   train_dataset = dataset.acdcdataset(train_list, train=True, transform=args.transform)
-  val_dataset =  dataset.acdcdataset(val_list, train=True, transform=args.transform)
+  val_dataset   = dataset.acdcdataset(val_list, train=True, transform=args.transform)
   train_dataloader = torch.utils.data.DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=args.num_workers)
-  val_dataloader = torch.utils.data.DataLoader(val_dataset, batch_size=args.batch_size, shuffle=True, num_workers=args.num_workers)
+  val_dataloader   = torch.utils.data.DataLoader(val_dataset, batch_size=args.batch_size, shuffle=False, num_workers=args.num_workers)
   print('Training dataset size: {}'.format(len(train_dataset)))
   print('Validation dataset size: {}'.format(len(val_dataset)))
 
@@ -87,161 +91,157 @@ def main(args):
   # Assign optimiser and learning rate scheduler
   optimizer = get_optim(classifier)
   scheduler = get_lr_sched(optimizer)
-  print('lr={}'.format(args.lr))
   print('batch_size={}'.format(args.batch_size))
+  print('LR/BS={}'.format(args.lr / args.batch_size))
   
   # write experiment settings to log file 
   train_log_string('Experiment settings:')
-  train_log_string('\toptimiser: {} '.format(args.optimiser))
+  train_log_string('\toptimiser:    {} '.format(args.optimiser))
   train_log_string('\tlr scheduler: {}, gamma={}, milestones={} '.format(args.lr_scheduler, args.gamma, args.milestones))
-  train_log_string('\tlr: {} '.format(args.lr))
-  train_log_string('\tbatch size: {} '.format(args.batch_size))
-   
+  train_log_string('\tlr:           {} '.format(args.lr))
+  train_log_string('\tbatch size:   {} '.format(args.batch_size))
+  train_log_string('\tLR/BS:        {}'.format(args.lr / args.batch_size))
+  
   # Cost function(s)
   loss_functions = {'ce':loss.CrossEntropy(), 'dice':loss.DiceLoss(), 'focal':loss.FocalLoss(), 'rank':loss.RankingLoss()}
    
   print('==================')
   print('Training model...')
   t_start  = time.time()
+  best_acc = 0.0 # initialise for tracking best val_dice 
+  t_epoch = [] # record epoch time
   
   for epoch in range(args.num_epochs):
-    print('EPOCH %03d ' % (epoch+1))
+    print()
+    print('EPOCH {} Stats...'.format(epoch+1))
+    
+    t_epochStart = time.time()
     
     # Run a training step
     train_step(classifier, loss_functions, train_dataloader, scheduler, optimizer, epoch, args)
     
     # Run a validation step
     with torch.no_grad():
-        validation_step(classifier, loss_functions, val_dataloader, epoch, args)
+        validation_step(classifier, loss_functions, val_dataloader, epoch, best_acc, args)
+    
+    t_epoch.append(time.time() - t_epochStart) 
   
   # Record training time 
   time_elapsed = time.time() - t_start
   print('Training complete in {:.0f}m {:.0f}s.'.format(time_elapsed // 60, time_elapsed % 60))
-  print('Time per epoch: {:.0f}s.'.format(time_elapsed // args.num_epochs))    
+  print('Avg. epoch time: {:.2f}s.'.format(np.mean(t_epoch)))    
+  
   # write info to train_log
   train_log_string('\nTraining complete in {:.0f}m {:.0f}s.'.format(time_elapsed // 60, time_elapsed % 60))
-  train_log_string('Time per epoch: {:.0f}s.'.format(time_elapsed // args.num_epochs)) 
-
-  # Display learning curves
-  plotLearningCurves(args, log_root, save=True)
+  train_log_string('Time per epoch: {:.2f}s.'.format(np.mean(t_epoch))) 
+  
+  # Get learning curves
+  plotLearningCurves(args, save=True)
+  
+  # new idea: automatically restart experiments with different conditions
     
 def train_step(classifier, loss_functions, dataloader, scheduler, optimizer, epoch, args):
   
   classifier.train() # switch model to training mode
-  
-  # decide which loss functions to choose based on settings
   ceLoss = loss_functions['ce']
-  diceLoss = loss_functions['dice']
-  focalLoss = loss_functions['focal']
-  rankLoss = loss_functions['rank']
   
-  Dice = utils.AverageMeter()
-  Dice_rv  = utils.AverageMeter()
-  Dice_myo = utils.AverageMeter()
-  Dice_lv  = utils.AverageMeter()
-  train_loss_epoch, train_dice_epoch = [], []
-#  gradients = []
+  train_meanDice_epoch, train_loss_epoch = [], []
+  train_rvDice_epoch, train_myoDice_epoch, train_lvDice_epoch = [], [], []
+
   for i, (slices,label) in enumerate(dataloader):
 
+    optimizer.zero_grad() 
     slices, label = slices.to(device), label.to(device)
-#    slices = torch.tensor(slices, requires_grad=True) # need this for tracking gradients
-    optimizer.zero_grad()
+    
+    # send batch to image_processing.py to get mean intensity and noise over batch.
+    # meanIntensity.append(batch_intensity)
+    
     pred = classifier(slices)
-    # Compute losses and backpropagate gradients
-    loss1 = diceLoss(pred, label)
-#    loss2 = ceLoss(pred, label)
-    loss = loss1#+loss2
+    
+    # loss, grads + update params
+    loss = ceLoss(pred, label)
+    train_loss_epoch.append(loss.detach().cpu().numpy())
     loss.backward()
     optimizer.step()
-
-    # Save gradients and update parameters
-#    print(slices.grad.size())
-#    grad = torch.mean(slices.grad.clone())
-#    gradients.append(grad.detach().cpu().numpy())
-#    print(l)
     
-    # Compute performance
-    pred_seg = pred.data.max(1)[1].cpu().numpy()
-    label_seg = label.data.cpu().numpy()
-    dice_score, dice1, dice2, dice3 = utils.compute_average_dice(pred_seg, label_seg)
-    Dice.update(dice_score)
-    Dice_rv.update(dice1)
-    Dice_myo.update(dice2)
-    Dice_lv.update(dice3)
-    train_loss_epoch.append(loss.detach().cpu().numpy())
-    train_dice_epoch.append(Dice)
+    # performance
+    class_scores = utils.segmentation_stats(pred, label, n_classes=args.n_classes)
+    train_meanDice_epoch.append(np.mean(class_scores))
+    train_rvDice_epoch.append(class_scores[0])
+    train_myoDice_epoch.append(class_scores[1])
+    train_lvDice_epoch.append(class_scores[2])
+      
   scheduler.step()
-  print('Training stats:')
-  print(('\tRV Dice:   %f') % (Dice_rv.avg))
-  print(('\tMyo Dice:  %f') % (Dice_myo.avg))
-  print(('\tLV Dice:   %f') % (Dice_lv.avg))
-  print(('\tMean Dice: %f') % (Dice.avg))
-  print(('\tLoss: %f') % (np.mean(train_loss_epoch)))
-#  print('\tMean grads over epoch={}'.format(np.mean(gradients)))
   
-  # Send to files
-  train_log_string('**** EPOCH %03d ****' % (epoch+1))
+#  # print and save results
+#  train_results = [np.mean(train_rvDice)...]
+#  utils.print_trainResults(train_results)
+#  utils.write_trainResults(train_results, log_string, epoch)
+  print('Train results:')
+  print('\tRV Dice:   {:.4f}'.format(np.mean(train_rvDice_epoch)))
+  print('\tMyo Dice:  {:.4f}'.format(np.mean(train_myoDice_epoch)))
+  print('\tLV Dice:   {:.4f}'.format(np.mean(train_lvDice_epoch)))
+  print('\tMean Dice: {:.4f}'.format(np.mean(train_meanDice_epoch)))
+  print('\tLoss:      {:.4f}'.format(np.mean(train_loss_epoch)))
+  train_log_string('** Epoch %03d **' % (epoch+1))
   train_log_string(str(datetime.now()))
-  train_log_string(('epoch %d | mean dice: %f') % (epoch+1, Dice.avg))
-  train_log_string(('epoch %d | train dice RV: %f') % (epoch+1, Dice_rv.avg))
-  train_log_string(('epoch %d | train dice Myo: %f') % (epoch+1, Dice_myo.avg))
-  train_log_string(('epoch %d | train dice LV: %f') % (epoch+1, Dice_lv.avg))
-  train_log_string(('epoch %d | mean train loss: %f') % (epoch+1, np.mean(train_loss_epoch)))
-  train_txt_string(('%f') % (Dice.avg))
-  train_txt_string(('%f') % (np.mean(train_loss_epoch)))
-#  grad_string(('%f') % (np.mean(gradients)))
-  if args.save_model and (epoch+1) % args.log_every == 0:
-      torch.save(classifier.state_dict(), '%s/%s_model_%d.pth' % (args.weights_path, 'acdc', epoch+1))
-       
-def validation_step(classifier, loss_functions, dataloader, epoch, args):
+  train_log_string('epoch {} | RV Dice:   {:.4f}'.format(epoch+1, np.mean(train_rvDice_epoch)))
+  train_log_string('epoch {} | Myo Dice:  {:.4f}'.format(epoch+1, np.mean(train_myoDice_epoch)))
+  train_log_string('epoch {} | LV Dice:   {:.4f}'.format(epoch+1, np.mean(train_lvDice_epoch)))
+  train_log_string('epoch {} | Mean Dice: {:.4f}'.format(epoch+1, np.mean(train_meanDice_epoch)))
+  train_log_string('epoch {} | Mean Loss: {:.4f}'.format(epoch+1, np.mean(train_loss_epoch)))
+  train_txt_string('{:.4f}'.format(np.mean(train_meanDice_epoch)))
+  train_txt_string('{:.4f}'.format(np.mean(train_loss_epoch)))
+  
+  
+def validation_step(classifier, loss_functions, dataloader, epoch, best_acc, args):
   
   classifier.eval() # switch to evaluation mode
   ceLoss = loss_functions['ce']
-  diceLoss = loss_functions['dice']
-  focalLoss = loss_functions['focal']
-  rankLoss = loss_functions['rank']
-  
-  Dice = utils.AverageMeter()
-  Dice_rv  = utils.AverageMeter()
-  Dice_myo = utils.AverageMeter()
-  Dice_lv  = utils.AverageMeter()
-  val_loss_epoch, val_dice_epoch = [], []
+   
+  val_meanDice_epoch, val_loss_epoch = [], []
+  val_rvDice_epoch, val_myoDice_epoch, val_lvDice_epoch = [], [], []
   
   for i, (slices,label) in enumerate(dataloader):
 
     slices, label = slices.to(device), label.to(device)
     pred = classifier(slices)
-    
-    # Compute losses
-    loss1 = diceLoss(pred, label)
-#    loss2 = ceLoss(pred, label)
-    loss = loss1#+loss2
-    
-    # Compute performance
-    pred_seg = pred.data.max(1)[1].cpu().numpy()
-    label_seg = label.data.cpu().numpy()
-    dice_score, dice1, dice2, dice3 = utils.compute_average_dice(pred_seg, label_seg)
-    Dice.update(dice_score)
-    Dice_rv.update(dice1)
-    Dice_myo.update(dice2)
-    Dice_lv.update(dice3)
+    loss = ceLoss(pred, label)
     val_loss_epoch.append(loss.detach().cpu().numpy())
-    val_dice_epoch.append(Dice)
-  print('Validation stats:')
-  print(('\tRV Dice:   %f') % (Dice_rv.avg))
-  print(('\tMyo Dice:  %f') % (Dice_myo.avg))
-  print(('\tLV Dice:   %f') % (Dice_lv.avg))
-  print(('\tMean Dice: %f') % (Dice.avg))
-  print(('\tLoss: %f') % (np.mean(val_loss_epoch)))
+    
+    # Compute performance    
+    class_scores = utils.segmentation_stats(pred, label, n_classes=args.n_classes)
+    val_meanDice_epoch.append(np.mean(class_scores))     # mean over all classes and all images in batch
+    val_rvDice_epoch.append(class_scores[0])             # mean rv scores across all images in batch
+    val_myoDice_epoch.append(class_scores[1])            # mean myo scores across batch for ith iteration
+    val_lvDice_epoch.append(class_scores[2])             # mean lv scores across batch for ith iter
+    
+   
+  # (19.1.21) track val_dice and save model with best results
+  if args.val_track and best_acc < np.mean(val_meanDice_epoch): # if previous acc < current acc
+      best_acc = np.mean(val_meanDice_epoch)
+      torch.save(classifier.state_dict(), ('{}/{}_valDice{:.2f}_ep{}.pth.tar').format(args.weights_path, 'acdc', best_acc, epoch+1))
+
+  # basic way
+  if args.save_model and (epoch+1) % args.log_every == 0:
+      torch.save(classifier.state_dict(), '%s/%s_model_%d.pth.tar' % (args.weights_path, 'acdc', epoch+1))
+        
+  # External outputs  
+  print('Validation results:')
+  print('\tRV Dice:   {:.4f}'.format(np.mean(val_rvDice_epoch)))
+  print('\tMyo Dice:  {:.4f}'.format(np.mean(val_myoDice_epoch)))
+  print('\tLV Dice:   {:.4f}'.format(np.mean(val_lvDice_epoch)))
+  print('\tMean Dice: {:.4f}'.format(np.mean(val_meanDice_epoch)))
+  print('\tLoss:      {:.4f}'.format(np.mean(val_loss_epoch)))
   val_log_string('**** EPOCH %03d ****' % (epoch+1))
   val_log_string(str(datetime.now()))
-  val_log_string(('epoch %d | mean dice: %f') % (epoch+1, Dice.avg))
-  val_log_string(('epoch %d | val dice RV: %f') % (epoch+1, Dice_rv.avg))
-  val_log_string(('epoch %d | val dice Myo: %f') % (epoch+1, Dice_myo.avg))
-  val_log_string(('epoch %d | val dice LV: %f') % (epoch+1, Dice_lv.avg))
-  val_log_string(('epoch %d | mean train loss: %f') % (epoch+1, np.mean(val_loss_epoch)))
-  val_txt_string(('%f') % (Dice.avg))
-  val_txt_string(('%f') % (np.mean(val_loss_epoch)))
+  val_log_string('epoch {} | RV Dice:   {:.4f}'.format(epoch+1, np.mean(val_rvDice_epoch)))
+  val_log_string('epoch {} | Myo Dice:  {:.4f}'.format(epoch+1, np.mean(val_myoDice_epoch)))
+  val_log_string('epoch {} | LV Dice:   {:.4f}'.format(epoch+1, np.mean(val_lvDice_epoch)))
+  val_log_string('epoch {} | Mean Dice: {:.4f}'.format(epoch+1, np.mean(val_meanDice_epoch)))
+  val_log_string('epoch {} | Mean Loss: {:.4f}'.format(epoch+1, np.mean(val_loss_epoch)))
+  val_txt_string('{:.4f}'.format(np.mean(val_meanDice_epoch)))
+  val_txt_string('{:.4f}'.format(np.mean(val_loss_epoch)))
   
   
 if __name__ == '__main__':

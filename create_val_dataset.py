@@ -3,7 +3,7 @@
 """
 Created on Thu Nov 12 20:25:56 2020
 
-@author: calmac
+@author: hsijcr
 """
 
 #!/usr/bin/env python3
@@ -28,7 +28,7 @@ if __name__ == '__main__':
   args = settings.parse_arguments()
 #  os.makedirs(args.root_myTrainData, exist_ok=True)
 #  os.makedirs(args.root_valData, exist_ok=True)
-  train_val_dict = assign_val_data(args)
+  train_val_dict, file_list = assign_val_data(args)
   train_list = train_val_dict['train']
   val_list = train_val_dict['val']
   

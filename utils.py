@@ -1,5 +1,21 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+
+
+'''
+Utility functions.  
+
+e.g. partition datasets into train/val/test, segmentation metrics, and weight initialisation
+
+Date: 30.1.21.
+
+@author: calmac
+
+'''
+
+
+
+
 import numpy as np
 import torch
 import os
@@ -45,30 +61,49 @@ def weights_init_kaiming(m):
         init.normal_(m.weight.data, 1.0, 0.02)
         init.constant_(m.bias.data, 0.0)
 
-### compute model params
-def count_param(model):
-    param_count = 0
-    for param in model.parameters():
-        param_count += param.view(-1).size()[0]
-    return param_count
+'''
+==============================
+26.1.21: better way to compute DIce scores. Adapted from Oktay et al.
+==============================
+'''
+def segmentation_stats(pred_seg, target, n_classes):
+    # inputs: pred_seg and target, shape will both be [bs, n_class, H, W]
+    # returns:  np.array of mean score of each class across batch i.e. class_scores = [meanRV, meanMyo, meanLV]
+    # we can then compute mean(class_scores) to get average dice 
+    pred_lbls = pred_seg.data.max(1)[1].cpu().numpy()   # new shape = (bs, H, W)
+    gt = target.data.cpu().numpy()                      # new shape = (bs, H ,W)
+    gts, preds = [], []
+    for gt_, pred_ in zip(gt, pred_lbls):
+        gts.append(gt_)
+        preds.append(pred_)
+    class_scores = dice_score_list(gts, preds, n_classes=n_classes)
+    return class_scores 
+               
+def dice_score_list(label_gt, label_pred, n_classes):
+    eps=1e-6
+    assert len(label_gt) == len(label_pred)
+    bs = len(label_gt)
+    dice_scores = np.zeros((bs, n_classes-1), dtype=np.float32) # ignore background class
+    for img_id, (l_gt, l_pred) in enumerate(zip(label_gt, label_pred)): # for each image in the batch
+        for class_id in range(1, n_classes): # and each class (skip background)
+            img_A = np.array(l_gt==class_id, dtype=np.float32).flatten()
+            img_B = np.array(l_pred==class_id, dtype=np.float32).flatten()
+            score = 2.0 * np.sum(img_A*img_B) / (np.sum(img_A) + np.sum(img_B) + eps)
+            dice_scores[img_id, class_id-1] = score # subtract 1 to ensure we dont try adding 4th element to array of size 3 (i.e. dice_scores[img_id, 3] will give error)
+    return np.mean(dice_scores, axis=0)
 
-class AverageMeter(object):
-    """Computes and stores the average and current value"""
-    def __init__(self):
-        self.reset()
+'''====================== '''
 
-    def reset(self):
-        self.val = 0
-        self.avg = 0
-        self.sum = 0
-        self.count = 0
-
-    def update(self, val, n=1):
-        self.val = val
-        self.sum += val * n
-        self.count += n
-        self.avg = self.sum / self.count
         
+''' 
+============================
+Other functions. 
+
+Some of these are useful for other segmentation/classification tasks. 
+
+============================
+'''
+
 def save_checkpoint(state, is_best,checkpoint_path,filename='./checkpoint/checkpoint.pth.tar'):
     torch.save(state, filename)
     if is_best:
@@ -78,28 +113,34 @@ def save_dice_single(is_best, filename='dice_single.txt'):
     if is_best:
         shutil.copyfile(filename, 'dice_best.txt')
         
-def compute_dice_score(predict, gt, forground = 1):
+
+ 
+#------------------------
+#Old ways to compute Dice. Didnt like this so rewrote it
+
+def compute_dice_score(predict, gt, foreground):
     score = 0
     count = 0
     assert(predict.shape == gt.shape)
-    overlap = 2.0 * ((predict == forground)*(gt == forground)).sum()
-    #print('overlap:',overlap)
-    
-    return (overlap + 0.001) / (((predict == forground).sum() + (gt == forground).sum()) + 0.001)
+    overlap = 2.0 * ((predict == foreground)*(gt == foreground)).sum()
+    pred = (predict == foreground).sum()
+    labels = (gt == foreground).sum()
+    return (overlap + 0.001) / (pred + labels + 0.001)
 
-def compute_average_dice(predict, gt, class_num = 4):
+def compute_average_dice(preds, gt, class_num = 4):
     Dice = 0
     Dice_list = []
-
     for i in range(1,class_num):
-        predict_copy = predict.copy()
+        preds_copy = preds.copy()
         gt_copy = gt.copy()
-        predict_copy[predict_copy != i] = 0
+        preds_copy[preds_copy != i] = 0
         gt_copy[gt_copy != i] = 0
-        dice = compute_dice_score(predict_copy, gt_copy, forground = i)
+        dice = compute_dice_score(preds_copy, gt_copy, foreground = i)
         Dice += dice
         Dice_list.append(dice)
     return Dice/(class_num - 1),Dice_list[0],Dice_list[1],Dice_list[2]
+
+'''---------------------'''
 
 def compute_score(predict, gt, forground = 1):
     score = 0
@@ -112,6 +153,7 @@ def compute_score(predict, gt, forground = 1):
         # dice,precsion,recall
     else:
         return 0,0,0,0
+
     
 def eval_seg(predict, gt, forground = 1):
     assert(predict.shape == gt.shape)

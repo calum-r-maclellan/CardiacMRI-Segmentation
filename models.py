@@ -6,6 +6,8 @@ Vanilla models for medical image segmentation.
 
 Started: 29/11/19
 
+latest date: 30.1.21.
+
 author: calmac
 
 """

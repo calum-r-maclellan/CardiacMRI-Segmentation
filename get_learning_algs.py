@@ -5,6 +5,8 @@ Script to deal with allocating choice of optimiser and lr scheduler away from ma
 
 Created on Wed Dec  9 10:28:29 2020
 
+latest date: 30.1.21.
+
 @author: calmac
 """
 
