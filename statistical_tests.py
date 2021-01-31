@@ -41,7 +41,7 @@ import settings
 args = settings.parse_arguments()
 
 
-class Bootstrapper(data.Dataset):
+class Bootstrapper(object):
 
 	def __init__(self, root):
 
