@@ -48,4 +48,8 @@ def get_lr_sched(optimiser):
     elif args.lr_scheduler == 'cosine':
         print('lr_scheduler: Cosine Annealing (no restarts)')
         return optim.lr_scheduler.CosineAnnealingLR(optimiser, T_max=args.num_epochs)
+    elif args.lr_scheduler == 'off':
+        print('lr_scheduler: OFF')
+        return None
+        
     

@@ -90,7 +90,7 @@ def dice_score_list(label_gt, label_pred, n_classes):
             img_B = np.array(l_pred==class_id, dtype=np.float32).flatten()
             score = 2.0 * np.sum(img_A*img_B) / (np.sum(img_A) + np.sum(img_B) + eps)
             dice_scores[img_id, class_id-1] = score # subtract 1 to ensure we dont try adding 4th element to array of size 3 (i.e. dice_scores[img_id, 3] will give error)
-    return np.mean(dice_scores, axis=0)
+    return np.mean(dice_scores, axis=0) # return mean score of each class A, B, C over the batch: array looks like = [meanA meanB meanC]
 
 '''====================== '''
 

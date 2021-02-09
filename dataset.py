@@ -96,11 +96,11 @@ class acdcdataset(data.Dataset):
                 data = data.resize((args.input_resize, args.input_resize))
                 data = _convertToRGB(data).astype(np.float32)
                 data = self._transformImage(data)
-                img_stats = image_stats(data)
+#                img_stats = image_stats(data)
                 label = label.resize((args.input_resize, args.input_resize))
                 return data, torch.from_numpy(np.array(label)).float()
             else:
-                return torch.from_numpy(data).float(), torch.from_numpy(label).float(), img_stats
+                return torch.from_numpy(data).float(), torch.from_numpy(label).float()#, img_stats
   
     
 """ Stack pixels over RGB channels """

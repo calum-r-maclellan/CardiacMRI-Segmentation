@@ -5,12 +5,19 @@
 Created on Thu 12th November 
 
 Script for performing both training and validation steps on the cardiac MRI data.
+Also compatible with hessian eigenvalue calculations (for tracking curvature of loss landscape during training)
 
 @author: calmac
 
-latest date: 30.1.21.
+latest date: 2.2.21.
 
 Updates: 
+    - 2.2.21: fixed hessian_tools.py issues and now included functionality to 
+              compute and store top eigenvalue of hessian during training.
+              - hessian calcs occur in train_step() at prompting of args.track_hessian
+              - assign val_dataloader to get_sharpness(), which returns top eigenvalue for each epoch
+              - functions for storing eigen at each epoch, and plotting writing results
+    - 1.2.21: add hessian calculations into validation loop: hessian_tools.py
     - 28.1.21: added wee line to compute and print lr/bs ratio. also writes ratio to train.log
     - 26.1.21: replaced Hes Dice score functions with my own. His gave wrong values, so rewrote it all. 
               -> no more AverageMeter() crap! (see utils.segmentation_stats)
@@ -22,6 +29,7 @@ import time
 import os
 import os.path
 import numpy as np
+import matplotlib.pyplot as plt
 # Pytorch 
 import torch
 import torch.autograd.variable as Variable
@@ -31,37 +39,45 @@ import torch.nn.functional as F
 # My stuff
 import dataset
 import create_val_dataset
-#import unet_vanilla
+import hessian_tools
 import models
 import loss
 import utils
 from get_learning_algs import get_optim, get_lr_sched
 from plotting import plotLearningCurves
 import settings 
+
 args = settings.parse_arguments()
 
-# Set up folders for storing stuff
+# Set up folders for storing training/validation results.
 os.system('mkdir {0}'.format(args.weights_path)) # folder for storing model
 os.system('mkdir {0}'.format(args.log_root)) # folder for storing model
 trainResultsFile_all = open(os.path.join(args.log_root, 'train.log'), 'w')
 valResultsFile_all = open(os.path.join(args.log_root, 'val.log'), 'w')
 trainResultsFile = open(os.path.join(args.log_root, 'train.txt'), 'w')
 valResultsFile = open(os.path.join(args.log_root, 'val.txt'), 'w')
-#gradFile = open(os.path.join(log_root, 'grad.txt'), 'w')
 
+# functions for writing results to files.
 def train_log_string(out_str):
-  trainResultsFile_all.write(out_str+'\n')
-  trainResultsFile_all.flush()
+    trainResultsFile_all.write(out_str+'\n')
+    trainResultsFile_all.flush()
 def train_txt_string(out_str):
-  trainResultsFile.write(out_str+'\n')
-  trainResultsFile.flush()
+    trainResultsFile.write(out_str+'\n')
+    trainResultsFile.flush()
 def val_log_string(out_str):
-  valResultsFile_all.write(out_str+'\n')
-  valResultsFile_all.flush()
+    valResultsFile_all.write(out_str+'\n')
+    valResultsFile_all.flush()
 def val_txt_string(out_str):
-  valResultsFile.write(out_str+'\n')
-  valResultsFile.flush()
-  
+    valResultsFile.write(out_str+'\n')
+    valResultsFile.flush()
+    
+# For hessian computations. Only used if turned on.
+if args.track_hessian:
+    hessianFile = open(os.path.join(args.log_root, 'hessian.txt'), 'w')
+    def hessian_log(out_str):
+        hessianFile.write(out_str+'\n')
+        hessianFile.flush()
+    
 # Establish available device
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -79,6 +95,7 @@ def main(args):
   val_dataset   = dataset.acdcdataset(val_list, train=True, transform=args.transform)
   train_dataloader = torch.utils.data.DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=args.num_workers)
   val_dataloader   = torch.utils.data.DataLoader(val_dataset, batch_size=args.batch_size, shuffle=False, num_workers=args.num_workers)
+  dataloaders = {'train':train_dataloader, 'val':val_dataloader}
   print('Training dataset size: {}'.format(len(train_dataset)))
   print('Validation dataset size: {}'.format(len(val_dataset)))
 
@@ -108,8 +125,8 @@ def main(args):
   print('==================')
   print('Training model...')
   t_start  = time.time()
-  best_acc = 0.0 # initialise for tracking best val_dice 
   t_epoch = [] # record epoch time
+  best_dice = 0.0
   
   for epoch in range(args.num_epochs):
     print()
@@ -118,12 +135,15 @@ def main(args):
     t_epochStart = time.time()
     
     # Run a training step
-    train_step(classifier, loss_functions, train_dataloader, scheduler, optimizer, epoch, args)
+    train_step(classifier, loss_functions, dataloaders, scheduler, optimizer, epoch, args)
     
     # Run a validation step
     with torch.no_grad():
-        validation_step(classifier, loss_functions, val_dataloader, epoch, best_acc, args)
-    
+        current_dice = validation_step(classifier, loss_functions, dataloaders, epoch, args)
+        if args.val_track and best_dice < current_dice:
+            best_dice = current_dice
+            torch.save(classifier.state_dict(), '{}/{}_valDice{:.4f}_ep{}.pth.tar'.format(args.weights_path, args.model_type, best_dice, epoch+1))
+            
     t_epoch.append(time.time() - t_epochStart) 
   
   # Record training time 
@@ -136,47 +156,56 @@ def main(args):
   train_log_string('Time per epoch: {:.2f}s.'.format(np.mean(t_epoch))) 
   
   # Get learning curves
-  plotLearningCurves(args, save=True)
+  plotLearningCurves(args, multiple=False)
   
-  # new idea: automatically restart experiments with different conditions
+  
+def train_step(classifier, loss_functions, dataloaders, scheduler, optimizer, epoch, args):
     
-def train_step(classifier, loss_functions, dataloader, scheduler, optimizer, epoch, args):
-  
+  # assign dataloaders. if required, use validation dataloader for computing Hessian after optim update.
+  train_dataloader = dataloaders['train']  
+  if args.track_hessian:
+      val_dataloader = dataloaders['val']
+      
   classifier.train() # switch model to training mode
   ceLoss = loss_functions['ce']
   
   train_meanDice_epoch, train_loss_epoch = [], []
   train_rvDice_epoch, train_myoDice_epoch, train_lvDice_epoch = [], [], []
-
-  for i, (slices,label) in enumerate(dataloader):
+      
+  for i, (images,labels) in enumerate(train_dataloader):
 
     optimizer.zero_grad() 
-    slices, label = slices.to(device), label.to(device)
+    images, labels = images.to(device), labels.to(device)
     
     # send batch to image_processing.py to get mean intensity and noise over batch.
     # meanIntensity.append(batch_intensity)
     
-    pred = classifier(slices)
+    preds = classifier(images)
     
     # loss, grads + update params
-    loss = ceLoss(pred, label)
+    loss = ceLoss(preds, labels)
     train_loss_epoch.append(loss.detach().cpu().numpy())
     loss.backward()
     optimizer.step()
     
     # performance
-    class_scores = utils.segmentation_stats(pred, label, n_classes=args.n_classes)
+    class_scores = utils.segmentation_stats(preds, labels, n_classes=args.n_classes)
     train_meanDice_epoch.append(np.mean(class_scores))
     train_rvDice_epoch.append(class_scores[0])
     train_myoDice_epoch.append(class_scores[1])
     train_lvDice_epoch.append(class_scores[2])
       
-  scheduler.step()
+  if scheduler is not None:
+      scheduler.step()
+  
+  if args.track_hessian:
+      hessian_epoch = hessian_tools.get_sharpness(net=classifier, criterion=ceLoss, dataloader=val_dataloader)
+      print('Hessian eigenvalue: {}'.format(hessian_epoch))
+      hessian_log('{:.4f}'.format(hessian_epoch))
   
 #  # print and save results
-#  train_results = [np.mean(train_rvDice)...]
-#  utils.print_trainResults(train_results)
-#  utils.write_trainResults(train_results, log_string, epoch)
+#  utils.print_trainResults(class_scores, train_loss_epoch)
+#  utils.write_trainResults(class_scores, train_loss_epoch)
   print('Train results:')
   print('\tRV Dice:   {:.4f}'.format(np.mean(train_rvDice_epoch)))
   print('\tMyo Dice:  {:.4f}'.format(np.mean(train_myoDice_epoch)))
@@ -194,38 +223,31 @@ def train_step(classifier, loss_functions, dataloader, scheduler, optimizer, epo
   train_txt_string('{:.4f}'.format(np.mean(train_loss_epoch)))
   
   
-def validation_step(classifier, loss_functions, dataloader, epoch, best_acc, args):
+def validation_step(classifier, loss_functions, dataloaders, epoch, args):
+  
+  dataloader = dataloaders['val']
   
   classifier.eval() # switch to evaluation mode
   ceLoss = loss_functions['ce']
    
   val_meanDice_epoch, val_loss_epoch = [], []
   val_rvDice_epoch, val_myoDice_epoch, val_lvDice_epoch = [], [], []
-  
-  for i, (slices,label) in enumerate(dataloader):
+      
+  for i, (images, labels) in enumerate(dataloader):
 
-    slices, label = slices.to(device), label.to(device)
-    pred = classifier(slices)
-    loss = ceLoss(pred, label)
+    images, labels = images.to(device), labels.to(device)
+    
+    preds = classifier(images)
+    loss = ceLoss(preds, labels)
     val_loss_epoch.append(loss.detach().cpu().numpy())
     
     # Compute performance    
-    class_scores = utils.segmentation_stats(pred, label, n_classes=args.n_classes)
+    class_scores = utils.segmentation_stats(preds, labels, n_classes=args.n_classes)
     val_meanDice_epoch.append(np.mean(class_scores))     # mean over all classes and all images in batch
     val_rvDice_epoch.append(class_scores[0])             # mean rv scores across all images in batch
     val_myoDice_epoch.append(class_scores[1])            # mean myo scores across batch for ith iteration
     val_lvDice_epoch.append(class_scores[2])             # mean lv scores across batch for ith iter
     
-   
-  # (19.1.21) track val_dice and save model with best results
-  if args.val_track and best_acc < np.mean(val_meanDice_epoch): # if previous acc < current acc
-      best_acc = np.mean(val_meanDice_epoch)
-      torch.save(classifier.state_dict(), ('{}/{}_valDice{:.2f}_ep{}.pth.tar').format(args.weights_path, 'acdc', best_acc, epoch+1))
-
-  # basic way
-  if args.save_model and (epoch+1) % args.log_every == 0:
-      torch.save(classifier.state_dict(), '%s/%s_model_%d.pth.tar' % (args.weights_path, 'acdc', epoch+1))
-        
   # External outputs  
   print('Validation results:')
   print('\tRV Dice:   {:.4f}'.format(np.mean(val_rvDice_epoch)))
@@ -243,6 +265,7 @@ def validation_step(classifier, loss_functions, dataloader, epoch, best_acc, arg
   val_txt_string('{:.4f}'.format(np.mean(val_meanDice_epoch)))
   val_txt_string('{:.4f}'.format(np.mean(val_loss_epoch)))
   
+  return np.mean(val_meanDice_epoch)
   
 if __name__ == '__main__':
   

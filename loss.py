@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-“””
+'''
 Script containing useful loss functions for training deep segmentation networks. 
  
 @author: calmac
 
-“””
+'''
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
